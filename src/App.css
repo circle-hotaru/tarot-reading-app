@@ -1,38 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --background-color: #1a1a1d;
+  --text-color: #f5f5f7;
+  --secondary-text-color: #86868b;
+  --button-background: rgba(0, 113, 227, 0.8);
+  --button-text-color: #fff;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.05) 25%,
+      transparent 25%
+    ),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.05) 75%);
+  background-size: 20px 20px;
+  color: var(--text-color);
+}
+
 .App {
   text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: justify-content 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App.no-cards {
+  justify-content: center;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+}
+
+.App-header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.App-header p {
+  font-size: 1.2rem;
+  color: var(--secondary-text-color);
+}
+
+.main-content {
+  transition: margin-top 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.App:not(.no-cards) .main-content {
+  margin-top: 0;
+}
+
+.button-container {
+  margin-top: 50px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  perspective: 1000px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,
+    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+button {
+  background: var(--button-background);
+  backdrop-filter: blur(10px);
+  color: var(--button-text-color);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 980px;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: rgba(0, 113, 227, 1);
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #a1a1a6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.question-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.question-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: var(--text-color);
+  padding: 15px;
+  font-size: 1.1rem;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.question-input::placeholder {
+  color: var(--secondary-text-color);
+}
+
+.reading-container {
+  max-width: 800px;
+  margin: 50px auto 0;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.reading-container p {
+  color: var(--text-color);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 1.05rem;
+  text-align: justify;
+}
+
+.App-footer {
+  margin-top: auto;
+  padding-top: 40px;
+  color: var(--secondary-text-color);
+  font-size: 0.9rem;
 }
