@@ -50,8 +50,9 @@ Format your response as JSON with this structure:
       Authorization: `Bearer ${process.env.REACT_APP_CHAT_API_KEY}`,
     },
     body: JSON.stringify({
-      model: 'gpt-4.1-mini',
+      model: 'deepseek-chat',
       messages: messages,
+      stream: false,
     }),
   }
 
